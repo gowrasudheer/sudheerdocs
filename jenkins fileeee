@@ -1,0 +1,82 @@
+pipeline {
+    agent {
+	label "master"									( agent in the sence where our project has run )
+    }
+	tools {
+		// declare the tool it should be match with global tool configure name 
+		maven "maven3"								( declaring maven version )
+    }
+	environment {
+		// declaring nexus version
+		NEXUS_VERSION = "nexux3"
+		//declaring nexux protocall http or https
+		NEXUS_PROTOCOL = "http"							
+		//declaring where nexus is running 					( in environment we are going to declare all	
+		NEXUS_URL = "localhost:8081"						  the password and path of nexux repository )
+		//declaring where nexux upload artifacts 
+		NEXUS_REPOSITORY = "dvs_project"
+		// nexux credential 
+		NEXUS_CREDENTIAL_ID = "	nexux_credential "
+    }
+	stages {
+	    stage("clone code") {
+		steps {
+			//lets clone the source code 
+			git 'https://github.com/gowrasudheer/spring-project';
+			}
+		}
+	}
+	stage("mvn build") {
+		steps {
+		   script {
+			// if you use linux we should use sh 
+			// if u want skip test cases we have to use the following 
+			sh(/${MAVEN_HOME}\bin\mvn -Dmaven.test.failure.ignore clean package/)
+			}
+		}
+	}
+	stage("publish to nexus") {
+		steps {
+		  script {
+			// read POM xml file using 'readmavenpom' step
+			pom = readMavenpom file: "pom.xml";
+			// find built artifact under target folder
+			filesByGlob = findFiles (glob: "target/*.${pom.packaging}");
+			// print some info from the artifact found
+			echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastmodified}"
+			//extract the path from the file found 
+			artifactpath = filesByGlob[0].path;
+			//assign to a boolean response verifying if the artifact name exists
+			artifactExists = fileExists artifactpath;
+			if(artifactExists) {
+			echo "*** file: ${artifactpath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version: {pom.version}";
+			nexusArtifactUploader(
+			nexusVersion: NEXUS_VERSION
+			protocol: NEXUS_PROTOCOL
+			nexus Url: NEXUS_URL
+			groupId: pom.groupId,
+			version: '$(BUILD_NUMBER)
+			repository: NEXUS_REPOSITORY
+			credentialsId: NEXUS_CREDENTIAL_ID
+			artifacts: [
+			//artifact generated such as .jar .ear and .war files.
+			[artifactId: pom.artifactId,
+			classifier: '',
+			file: artifactpath,
+			type: pom.packaging],
+			[artifactId: pom.artifactId,
+			classifier: '',
+			file: "pom.xml",
+			type: "pom"]
+			]
+			);
+			} else	"error " not found "
+		    }
+		}
+	    }
+	}
+     }
+  }
+}	
+
+		

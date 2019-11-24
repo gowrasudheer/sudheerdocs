@@ -1,0 +1,918 @@
+free style project :--
+----------------------
+this is the central feature of jenkins. jenkins will build your project combine any scm and any build system
+
+a freestyle project is a project that incorporate almost any type of builds 
+
+in this free type project we will excute any sheel are bash commands in free style.
+
+free_style_project::------
+--------------------------
+step1:--
+--------
+
+select new item 
+---------------
+		and then enter project name 
+		
+		free style project
+		
+		save ok
+
+step2:--
+--------
+
+its havig 
+		
+	General--source code management--build triggers--build environment--build--post build Action
+
+Genral 
+
+	if u want enter any message that can enter here 
+
+Description	
+
+ 
+
+[Safe HTML] Preview 
+	
+		
+Discard old builds	
+		
+GitHub project	
+
+This build requires lockable resources	
+
+This project is parameterized	
+	
+Throttle builds	
+		
+Disable this project	
+		
+Execute concurrent builds if necessary	
+
+Restrict where this project can be run
+
+Source Code Management:--
+---------------------- 
+
+None 	
+
+Git 
+
+Build Triggers :--
+---------------
+
+Trigger builds remotely (e.g., from scripts)	Help for feature: Trigger builds remotely (e.g., from scripts)
+		
+Build after other projects are built		Help for feature: Build after other projects are built
+		
+Build periodically				Help for feature: Build periodically
+		
+GitHub hook trigger for GITScm polling		Help for feature: GitHub hook trigger for GITScm polling
+		
+Poll SCM
+
+Build Environment :--
+----------------- 
+
+Delete workspace before build starts	
+
+Use secret text(s) or file(s)			Help for feature: Use secret text(s) or file(s)
+		
+Abort the build if it's stuck	
+
+Add timestamps to the Console Output	
+
+Inspect build log for published Gradle build scans	
+
+With Ant					Help for feature: With Ant
+
+Build:--
+------		
+    Execute Windows batch command
+    
+    Execute shell
+
+    Invoke Ant
+
+    Invoke Gradle script
+
+    Invoke top-level Maven targets
+
+    Run with timeout
+
+    Set build status to "pending" on GitHub commit
+
+Post-build Actions :---
+-------------------
+    Aggregate downstream test results
+    
+    Archive the artifacts
+
+    Build other projects
+
+    Publish JUnit test result report
+
+    Publish Javadoc
+
+    Record fingerprints of files to track usage
+
+    Git Publisher
+
+    Deploy war/ear to a container
+
+    E-mail Notification
+
+    Editable Email Notification
+
+    Editable Email Notification Templates
+
+    Set GitHub commit status (universal)
+
+    Set build status on GitHub commit [deprecated]
+
+    Delete workspace when build is done
+
+						save apply
+
+writing free style project :--
+------------------------------
+
+in source code management select Git :--
+-------------------------------------
+				enter url https://github.com/-----
+    				
+				and we have add credentials ( git hub username and password )
+
+build :--
+-------				we have to add ( shell commands )
+				like date 
+				pwd 
+				etc
+
+save apply 
+
+and then build 
+
+---------------------------------------------------------------------------------------------------------------------------
+
+maven project :---- ( compile test package )
+-------------------
+maven is a powerfull project / build management tool,based on pom.xml that includes project information and configurations information for maven such as construct directly.
+
+select new item :--
+-------------------
+name :--
+--------	maven-project for compile 
+
+save apply
+
+in general section slect (( git hub project ))
+   -------
+source code management:--
+-----------------------
+ None 	
+ 
+@Git 	
+ 	Repositories	
+ 	
+	Repository URL		https://github.com/gowrasudheer/maven-project.git
+	
+ 	Credentials		passwords 	
+			
+ 	Branches to build	*/master
+	
+ 	Branch Specifier (blank for 'any')		Help for feature: Branch Specifier (blank for 'any')
+		
+ 	Additional Behaviours	
+		
+	Subversion 
+
+Build:--
+--------
+
+ 	Root POM		pom.xml						Help for feature: Root POM
+		
+ 	Goals and options	compile	test package install			Help for feature: Goals and options
+
+	apply save
+---------------------------------------------------
+and deploy to the container:--
+---------------------------------------------------
+
+WAR/EAR files		**/*.war					Help for feature: WAR/EAR files
+				
+Context path		flipkart ( project name )			Help for feature: Context path
+		
+Containers	
+	
+			Tomcat 7.x Remote
+		
+		 	Credentials 		( we have to provide tomcat password )	
+ 
+			Tomcat URL    		 https://localhost/
+	
+	
+			save apply	
+-----------------------------------------------------------------------------------------------------------------------
+
+Build Triggers :--
+---------------
+
+Trigger builds remotely (e.g., from scripts)	Help for feature: Trigger builds remotely (e.g., from scripts)
+		
+Build after other projects are built		Help for feature: Build after other projects are built
+		
+Build periodically				Help for feature: Build periodically
+		
+GitHub hook trigger for GITScm polling		Help for feature: GitHub hook trigger for GITScm polling
+		
+Poll SCM
+==================================================================================================	
+
+trigger build remotely :--
+--------------------------
+
+Trigger builds remotely 					   (e.g., from scripts)			
+		
+Authentication Token	        sudheer			           ( we have to enter the Authentication Token (name are number ))
+
+	<<<<Use the following URL to trigger build remotely: JENKINS_URL/job/ff/build?token=TOKEN_NAME or /buildWithParameters?token=TOKEN_NAME
+Optionally append &cause=Cause+Text to provide text that will be included in the recorded build cause>>>>
+
+by using this option we can build our project on new tab google chrome like this 
+--------------------------------------------------------------------------------
+
+JENKINS_URL/job/ff/build?token=TOKEN_NAME
+
+localhost:8080/job/ff/build?token=sudheer
+
+=====================================================================================================
+
+Build after other projects are built:--
+---------------------------------------
+
+by using this option we can build our job one by one if we one build complete automatically second build starts 
+
+Build after other projects are built	Help for feature: Build after other projects are built
+-----------------------------------		
+ 	
+Projects to watch					( we have to mention project name here )		
+
+ 	       @ Trigger only if build is stable	
+		
+ 		 Trigger even if the build is unstable	
+		
+ 		 Trigger even if the build fails
+
+=====================================================================================================
+
+poll scm :--
+------------
+
+after the code pushed into repository after some time job should be build 		
+
+crontab configuration ( *	*	*	* 	*  )
+
+This field follows the syntax of cron (with minor differences). Specifically, each line consists of 5 fields separated by TAB or whitespace:
+
+MINUTE HOUR DOM MONTH DOW
+
+MINUTE	Minutes within the hour (0–59)
+HOUR	The hour of the day (0–23)
+DOM	The day of the month (1–31)
+MONTH	The month (1–12)
+DOW	The day of the week (0–7) where 0 and 7 are Sunday.
+--------------------------
+# every fifteen minutes (perhaps at :07, :22, :37, :52)
+H/15 * * * *
+# every ten minutes in the first half of every hour (three times, perhaps at :04, :14, :24)
+H(0-29)/10 * * * *
+# once every two hours at 45 minutes past the hour starting at 9:45 AM and finishing at 3:45 PM every weekday.
+45 9-16/2 * * 1-5
+# once in every two hours slot between 9 AM and 5 PM every weekday (perhaps at 10:38 AM, 12:38 PM, 2:38 PM, 4:38 PM)
+H H(9-16)/2 * * 1-5
+# once a day on the 1st and 15th of every month except December
+H H 1,15 1-11 *	
+
+----------------------------------------------------------------------------------------------------------------
+poll scm 
+--------
+
+Poll SCM							
+		
+ Schedule	*/1 * * * *	( if u want to build project after every push commit ( in 1 min )
+
+it will automatically build the project after push to the git hub 
+
+================================================================================================================
+
+ Build periodically :--
+-----------------------
+
+code is pushed or not but my job should be run on a particular time 
+
+if u want to find out the crontab from online we have to use                       ( https://crontab.guru/ )
+
+Schedule	*/1 * * * *	( it will build the job for every 1 ( in 1 min )
+
+=================================================================================================================
+
+GitHub hook trigger for GITScm polling :---
+-------------------------------------------
+
+Options
+Collaborators
+Branches
+Webhooks
+Notifications
+Integrations & services
+Deploy keys
+Secrets
+Actions
+
+Webhooks / Manage webhook
+
+We’ll send a POST request to the URL below with details of any subscribed events. You can also specify which data format you’d like to receive (JSON, x-www-form-urlencoded, etc). More information can be found in our developer documentation.
+
+Payload URL 			 http://localhost:8080/github-webhook
+
+Content type 			 application
+
+Secret
+
+Which events would you like to trigger this webhook?
+    
+	@ Just the push event.
+          Send me everything.
+          Let me select individual events.
+
+Active
+
+We will deliver event details when this hook is triggered.
+
+===============================================================================================
+
+git parameterized build  :----
+-------------------------
+
+if u run following parameterized option we have to install following plugin ( git parameter )
+
+This project is parameterized	Help for feature: This project is parameterized
+		
+	
+Git Parameter
+-------------			
+Name				project name 		
+				
+Description			why build			
+			
+Parameter Type			tag or branch 
+		
+		
+Default Value		
+	
+and source code management :---
+-------------------------------
+
+@ git 	:-- url 
+
+apply save
+===============================================================================================
+slave node concept :--
+--------------------
+master node :-- were is u master is running were is u r jenkins is running is know as master 
+-----------
+
+A Jenkins Master is the machine where our Jenkins service is running. This master server will contain all the metadata related the job, like build history, job description, and steps to accomplish the designated task.
+
+node concept :--
+----------------
+
+A Jenkins master can have as many execution nodes as you need. There are multiple methods to connect them: SSH, Java agents or Remote Management. Machines with pretty much any OS can be used as slaves.
+
+Both masters and nodes are able to run jobs (pipeline or freestyle projects), which is a finite set of tasks, such as pulling a repository, creating a file, building a project, etc. Execution nodes will also provide the workspace for the jobs we run.
+
+Executors :--
+--------------
+
+Jobs are built using executors. An executor is basically a process and both the master and the slaves can have any number of executors.
+
+If we decide to give our master two executors, that means Jenkins will be able to create two different processes at any given time in order to build two different tasks. We might end up executing two tasks of the same job, in the two different executors in the same machine.
+
+==================================================================================================
+creation of slave node :--
+--------------------------
+Name				slave1							Help for feature: Name
+	
+Description			description of slave					Help for feature: Description
+		
+# of executors			3							Help for feature: # of executors
+	
+Remote root directory		/home/sudheer/pg					Help for feature: Remote root directory
+	
+Labels				windows							Help for feature: Labels
+		
+Usage				use this node as much as possible
+
+Launch method			launch the agent on the master 
+				launch the agent via ssh
+
+Disable WorkDir										Help for feature: Disable WorkDir
+		
+Custom WorkDir path		/home/sudheer/pg					Help for feature: Custom WorkDir path
+		
+Internal data directory		remoting						Help for feature: Internal data directory
+		
+Fail if workspace is missing
+
+save 
+		
+==================================================================================================
+how we are using slaves in jenkins 
+
+configure :--
+------------ -
+		in general section (( restrict where the project can be run ))
+		
+		label expression ( jms project (lable name) )
+
+	apply save
+==================================================================================================
+
+multi branch pipe line :--
+--------------------------
+
+Creating a Multibranch Pipeline job
+
+Configure Jenkins:
+
+    Open Manage Jenkins - Configure System.
+    Add a server in GitHub Enterprise Servers section. API endpoint should be like http://gitbucket.example.com/api/v3.
+
+Add a job on Jenkins:
+
+    Open New Item.
+    Enter job name and mark as a Multibranch Pipeline. Then, click OK.
+    Add a GitHub source in Branch Sources section.
+        API endpoint: select GitBucket (http://gitbucket.example.com/api/v3).
+        Credentials: required if anonymous access is denied on GitBucket.
+        Owner: user or group
+        Repository: select your repository
+    Click Save.
+
+Configure a webhook on GitBucket:
+
+    Open your repository - Settings - Service Hooks.
+    Click Add webhook button.
+    Fill followings and save.
+        Payload URL: http://jenkins.example.com/github-webhook/
+        Which events would you like to trigger this webhook?: Push, Pull Request
+
+Create a Jenkinsfile on your repository:
+
+pipeline {
+  agent any
+  stages {
+    stage('build') {
+      steps {
+        sh 'echo Building ${BRANCH_NAME}...'
+      }
+    }
+  }
+}
+
+A new build should be started immediately on Jenkins.
+Creating an Organization folder
+
+Add a job on Jenkins:
+
+    Open New Item.
+    Enter job name and mark as a GitHub Organization. Then, click OK.
+    Add a GitHub source in Branch Sources section.
+        API endpoint: select GitBucket (http://gitbucket.example.com/api/v3).
+        Credentials: required if anonymous access is denied on GitBucket.
+        Owner: group
+    Click Save.
+
+Configure a webhook on GitBucket:
+
+    Open your group - Edit group - Service Hooks.
+    Click Add webhook button.
+    Fill followings and save.
+        Payload URL: http://jenkins.example.com/github-webhook/
+        Which events would you like to trigger this webhook?: Push, Pull Request
+
+Then, your group and repositories should be shown in Jenkins.
+For better security
+
+Configure GitBucket:
+
+    Open System settings and set Anonymous access to Deny.
+    Create jenkins user and add it to your group.
+
+Configure Jenkins:
+
+    Open Credentials - Add Credentials.
+    Fill followings and save.
+        Username: jenkins
+        Password: password of jenkins
+        Description: GitBucket access credential
+
+===================================================================================================================
+
+Creating Multi-branch Pipelines
+
+The Multibranch Pipeline project type enables you to configure different jobs for different branches of the same project. In a multi-branch pipeline configuration, Jenkins automatically discovers, manages, and executes jobs for multiple source repositories and branches. This eliminates the need for manual job creation and management, as would otherwise be necessary when, for example, a developer adds a new feature to an existing product. Multi-branch pipelines also enable you to stop or suspend jobs automatically if circumstances make that appropriate.
+
+A multi-branch pipeline project always includes a Jenkinsfile in its repository root. Jenkins automatically creates a sub-project for each branch that it finds in a repository with a Jenkinsfile.
+
+Multi-branch pipelines use the same version control as the rest of your software development process. This “pipeline as code” approach has the following advantages:
+
+    You can modify pipeline code without special editing permissions.
+
+    Finding out who changed what and why no longer depends on whether developers remember to comment their code changes in configuration files.
+
+    Version control makes the history of changes to code readily apparent.
+
+To create a Multi-branch Pipeline:
+
+Click New Item on your Jenkins home page, 
+
+enter a name for your job, 
+
+select Multibranch Pipeline, 
+
+and click OK.
+
+    Configure your SCM source (options include Git, GitHub, Mercurial, Subversion, and Bitbucket), supplying information about the owner, scan credentials, and repository in appropriate fields. For example, if you select Git as the branch source, you are prompted for the usual connection information, but then rather than enter a fixed refspec (Git’s name for a source/destination pair), you would enter a branch name pattern (Use default settings to look for any branch).
+
+    Configure the other multi-branch pipeline options:
+
+        API endpoint - an alternate API endpoint to use a self-hosted GitHub Enterprise
+
+        Checkout credentials - alternate credentials to use when checking out the code (cloning)
+
+        Include branches - a regular expression to specify branches to include
+
+        Exclude branches - a regular expression to specify branches to exclude; note that this will takes precedence over the contents of include expressions
+
+        Property strategy - where you can optionally define custom properties for each branch
+
+=======================================================================================================
+
+ Save your configuration.
+
+Jenkins automatically scans the designated repository and creates appropriate branches.
+
+For example (again in Git), if you started with a master branch, and then wanted to experiment with some changes, and so did git checkout -b newfeature and pushed some commits, Jenkins would automatically detect the new branch in your repository and create a new sub-project for it. That sub-project would have its own build history unrelated to the trunk (main line).
+
+If you choose, you can ask for the sub-project to be automatically removed after its branch is merged with the main line and deleted. To change your Pipeline script—for example, to add a new Jenkins publisher step corresponding to new reports that your Makefile/pom.xml/etc. is creating—you edit the Jenkinsfile in your change. Your Pipeline script is always synchronized with the rest of the source code you are working on: the checkout scm command checks out the same revision as the script is loaded from 
+========================================================================================================
+		
+what is pipeline ?
+
+in jenkins a pipeline is a group of events are jobs which are interlinked with each other in a sequence
+
+							or
+
+jenkins pipeline is a combination of plugins that supported the integration and impletaion of continuous delivery pipeline as code in jenkins
+
+pipeline code were created DSl ( domain specific langaguge )
+
+in jenkins pipeline , every job are interlinked each other 
+
+build -- deploy -- test -- release 
+
+the above picture shows the continues delivery pipeline in jenkins.
+
+it contines a group states called build deploy test and release .this events are inter linked each other.
+
+
+========================================================================================================
+
+jenkinsfile :--
+---------------
+
+you can implement pipeline as code using jenkinsfile
+
+its can be defined by using a domain specific language (DSL)
+
+with jenkinsfile,you can write the steps needed for running a jenkins pipeline .  
+
+
+benfits of using jenkinsfile are :--
+------------------------------------
+
+you can create pipeline automatically for all branches and excute pull requests with just with one jenkinsfile  
+
+jenkins can be either web Ui or with jenkinsfile
+
+declarative verus scripted pipeline syntax
+
+========================================================================================================
+
+there is two types jenkinsfile
+
+Declartive 
+
+scripted 
+		
+declarative:--
+--------------
+
+declarative pipeline syntax offers an easy way to creat pipeline its give a simple a straight-forward manner.
+
+scripted:--
+-----------
+
+scripted jenkins pipeline runs on the jenkins master with help of light weight executors .
+
+Both declatative and scripted syntax are different from each other and definde totally different 
+========================================================================================================
+
+why we use jenkins's pipeline ???
+
+jenkins is an open continuous integration server which has the ability to support the automation of software development processes .
+
+here are the reason why you use should use jenkins pipeline:
+
+jenkins pipeline is implemented as a code which allows multiple users to edit and excute the pipeline process
+
+when server undergose is restart the pipeline automatically resumed 
+
+jenkins pipeline support  big projects. you can run multiple jobs,and even use pipeline as loop.
+
+========================================================================================================
+
+pipeline concept :--
+--------------------
+
+the pipeline is a set of instructions given in the form of code for continuous delivery and consists of instructions need for entier build process 
+
+in pipeline we have three stages 
+
+1.node
+
+2.stage
+
+3.step
+
+node:-- the machine on which jenkins runs is called a node .
+
+	a node block is mainly used in scripted pipeline syntax 
+
+stage :--
+---------
+
+a stage block contains a series of steps in a pipeline that is build test deploy process all comes to gether in stage 
+
+stpes:--
+--------
+
+a step is singel task that can excutes a specific process  as it define time.
+
+a pipeline involves a series of steps 
+
+--------------------------------------------------------------------------------------------------------
+
+Declarative Pipeline fundamentals
+
+In Declarative Pipeline syntax, the pipeline block defines all the work done throughout your entire Pipeline.
+Jenkinsfile (Declarative Pipeline)
+
+pipeline {
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {
+                // 
+            }
+        }
+        stage('Test') { 
+            steps {
+                // 
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                // 
+            }
+        }
+    }
+}
+
+	Execute this Pipeline or any of its stages, on any available agent.
+	Defines the "Build" stage.
+	Perform some steps related to the "Build" stage.
+	Defines the "Test" stage.
+	Perform some steps related to the "Test" stage.
+	Defines the "Deploy" stage.
+	Perform some steps related to the "Deploy" stage
+============================================================================================================
+Scripted Pipeline fundamentals
+
+In Scripted Pipeline syntax, one or more node blocks do the core work throughout the entire Pipeline. Although this is not a mandatory requirement of Scripted Pipeline syntax, confining your Pipeline’s work inside of a node block does two things:
+
+    Schedules the steps contained within the block to run by adding an item to the Jenkins queue. As soon as an executor is free on a node, the steps will run.
+
+    Creates a workspace (a directory specific to that particular Pipeline) where work can be done on files checked out from source control.
+    Caution: Depending on your Jenkins configuration, some workspaces may not get automatically cleaned up after a period of inactivity. See tickets and discussion linked from JENKINS-2111 for more information.
+
+Jenkinsfile (Scripted Pipeline)
+
+node {  
+    stage('Build') { 
+        // 
+    }
+    stage('Test') { 
+        // 
+    }
+    stage('Deploy') { 
+        // 
+    }
+}
+
+	Execute this Pipeline or any of its stages, on any available agent.
+	Defines the "Build" stage. stage blocks are optional in Scripted Pipeline syntax. However, implementing stage blocks in a Scripted Pipeline provides clearer visualization of each `stage’s subset of tasks/steps in the Jenkins UI.
+	Perform some steps related to the "Build" stage.
+	Defines the "Test" stage.
+	Perform some steps related to the "Test" stage.
+	Defines the "Deploy" stage.
+
+=============================================================================================================
+
+pipeline {
+    agent any
+
+	tools {
+		maven 'maven3.6'
+	}
+
+//	environment {
+//		M2_INSTALL = "/home/gamut/Distros/apache-maven-3.6.0/bin/mvn"
+//	}
+
+    stages {
+		stage('Clone-Repo') {
+			steps {
+				checkout scm
+			}
+		}
+		stage('Build') {
+	    	steps {
+				sh 'mvn install -DskipTests'
+			}
+	    }
+		stage('Unit Tests') {
+			steps {
+				sh 'mvn surefire:test'
+			}
+		}
+		stage('Deployment') {
+	    	steps {
+				sh 'sshpass -p "gamut" scp target/gamutkart.war gamut@172.17.0.3:/home/gamut/Distros/apache-tomcat-8.5.38/webapps'
+				sh 'sshpass -p "gamut" ssh gamut@172.17.0.3 "JAVA_HOME=/home/gamut/Distros/jdk1.8.0_151" "/home/gamut/Distros/apache-tomcat-8.5.38/bin/startup.sh"'
+	    	}
+		}
+    }
+}
+	Perform some steps related to the "Deploy" stage
+============================================================================================================
+
+Pipeline Syntax
+
+agent :--
+---------
+
+The agent section specifies where the entire Pipeline, or a specific stage, will execute in the Jenkins environment depending on where the agent section is placed
+
+any
+
+    Execute the Pipeline, or stage, on any available agent. For example: agent any
+
+none
+
+    When applied at the top-level of the pipeline block no global agent will be allocated for the entire Pipeline run and each stage section will need to contain its own agent section. For example: agent none
+
+label
+
+    Execute the Pipeline, or stage, on an agent available in the Jenkins environment with the provided label. For example: agent { label 'my-defined-label' }
+
+node
+
+    agent { node { label 'labelName' } } behaves the same as agent { label 'labelName' }, but node allows for additional options (such as customWorkspace).
+
+docker
+
+    Execute the Pipeline, or stage, with the given container which will be dynamically provisioned on a node pre-configured to accept Docker-based Pipelines, or on a node matching the optionally defined label parameter. docker also optionally accepts an args parameter which may contain arguments to pass directly to a docker run invocation, and an alwaysPull option, which will force a docker pull even if the image name is already present. For example: agent { docker 'maven:3-alpine' } 
+
+============================================================================================================
+post
+
+The post section defines one or more additional steps that are run upon the completion of a Pipeline’s or stage’s run (depending on the location of the post section within the Pipeline). post can support any of the following post-condition blocks: always, changed, fixed, regression, aborted, failure, success, unstable, unsuccessful, and cleanup. These condition blocks allow the execution of steps inside each condition depending on the completion status of the Pipeline or stage. The condition blocks are executed in the order shown below.
+
+
+
+always
+
+    Run the steps in the post section regardless of the completion status of the Pipeline’s or stage’s run.
+changed
+
+    Only run the steps in post if the current Pipeline’s or stage’s run has a different completion status from its previous run.
+fixed
+
+    Only run the steps in post if the current Pipeline’s or stage’s run is successful and the previous run failed or was unstable.
+regression
+
+    Only run the steps in post if the current Pipeline’s or stage’s run’s status is failure, unstable, or aborted and the previous run was successful.
+aborted
+
+    Only run the steps in post if the current Pipeline’s or stage’s run has an "aborted" status, usually due to the Pipeline being manually aborted. This is typically denoted by gray in the web UI.
+failure
+
+    Only run the steps in post if the current Pipeline’s or stage’s run has a "failed" status, typically denoted by red in the web UI.
+success
+
+    Only run the steps in post if the current Pipeline’s or stage’s run has a "success" status, typically denoted by blue or green in the web UI.
+unstable
+
+    Only run the steps in post if the current Pipeline’s or stage’s run has an "unstable" status, usually caused by test failures, code violations, etc. This is typically denoted by yellow in the web UI.
+unsuccessful
+
+    Only run the steps in post if the current Pipeline’s or stage’s run has not a "success" status. This is typically denoted in the web UI depending on the status previously mentioned
+cleanup
+
+    Run the steps in this post condition after every other post condition has been evaluated, regardless of the Pipeline or stage’s status.
+
+Example
+Jenkinsfile (Declarative Pipeline)
+
+pipeline {
+    agent any
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+    }
+}
+
+===================================================================================================================
+
+environment
+
+The environment directive specifies a sequence of key-value pairs which will be defined as environment variables for the all steps, or stage-specific steps, depending on where the environment directive is located within the Pipeline.
+
+This directive supports a special helper method credentials() which can be used to access pre-defined Credentials by their identifier in the Jenkins environment.
+
+Supported Credentials Type
+
+Secret Text
+
+    the environment variable specified will be set to the Secret Text content
+Secret File
+
+    the environment variable specified will be set to the location of the File file that is temporarily created
+Username and password
+
+    the environment variable specified will be set to username:password and two additional environment variables will be automatically defined: MYVARNAME_USR and MYVARNAME_PSW respectively.
+SSH with Private Key
+
+    the environment variable specified will be set to the location of the SSH key file that is temporarily created and two additional environment variables may be automatically defined: MYVARNAME_USR and MYVARNAME_PSW (holding the passphrase).
+
+pipeline {
+    agent any
+    stages {
+        stage('Example Username/Password') {
+            environment {
+                SERVICE_CREDS = credentials('my-prefined-username-password')
+            }
+            steps {
+                sh 'echo "Service user is $SERVICE_CREDS_USR"'
+                sh 'echo "Service password is $SERVICE_CREDS_PSW"'
+                sh 'curl -u $SERVICE_CREDS https://myservice.example.com'
+            }
+        }
+        stage('Example Username/Password') {
+            environment {
+                SSH_CREDS = credentials('my-prefined-ssh-creds')
+            }
+            steps {
+                sh 'echo "SSH private key is located at $SSH_CREDS"'
+                sh 'echo "SSH user is $SSH_CREDS_USR"'
+                sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
+            }
+        }
+    }
+}
+
+
+

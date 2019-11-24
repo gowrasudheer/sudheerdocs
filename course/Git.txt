@@ -1,0 +1,1257 @@
+what is Git and why we need Git ?
+
+Git :--
+-------
+
+Git is a distributed version control system and mainly used for source code management in software develpment.
+
+--> strong development for non linear development ::--
+------------------------------------------------------
+
+non linear development in the sence if u r worked in one file are module u r getting a bug on another module u can save the changes upto the module and u can switch over to another module and get back u r module again 
+
+--> distributed development :--
+------------------------------------------------------
+
+distributed development allows for the people to be working on the same project and the same time . with out version control you would not be able to work on the same file someone 
+
+--> safeguard:--
+----------------
+
+everything is saved in git is accessible at some later. even if u deleteit there is record of your save history.
+
+advantages of Git :--
+---------------------
+
+1.git is distributed version control system 
+
+2.working with git is easy to work
+
+3.working with git is simple and fast 
+
+4.branchiing and merging is simple in git 
+
+5.staging area is another advantage in git again we check and review commit again 
+
+git having three stages ?
+-------------------------
+1. work space OR working tree
+
+2. staging area OR index 
+
+3. local repository 
+
+what is workspace ?
+--------------------------
+
+the work space is arae were u r currently working 
+
+this arae also know as untracked  arae of git 
+
+if u do any changes in u r file its in work space area 
+
+if u want see untracked files list we have to use following command 
+
+git status
+
+staging arae OR index ?
+--------------------------
+
+staging area is used verfiy all your files onse again and then commited to local repo 
+
+to see the files in staging araea we have to use following command git status if it is showed in green files are in staging arae 
+
+local repository :--
+---------------------------
+
+the local repository is everything in .git directory. you can maily observes all ur commited files here. its area saves every thing related to u r commites and projects.
+
+Git installation :--
+--------------------
+
+if u want install git we have to use following command for that apt-get update and apt-get install git 
+
+$ sudo apt-get update
+
+$ sudo apt-get install git
+
+---------------------------------------------------------
+
+after getting installation of git we have to check the version of git we have to use following command git --version 
+
+$ git --version 
+
+sudheer@sudheer-Lenovo-G50-70:~$ git --version
+
+git version 2.17.1
+
+or else we can use another command 
+
+sudheer@sudheer-Lenovo-G50-70:~$ which git
+
+/usr/bin/git
+
+---------------------------------------------------------
+
+we have to give the configuration to the git to know the author and email 
+
+to know configuration details we have to use following command 
+
+git config --list 
+
+sudheer@sudheer-Lenovo-G50-70:~$ git config --list
+
+user.name= gowra sudheer 
+user.email= gowrasudheer@gmail.com 
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+
+sudheer@sudheer-Lenovo-G50-70:~$ 
+
+if u want add the user name we have to use following details 
+
+git config --global user.name "sudheer"
+git config --global user.email "gowrasudheer@gmail.com"
+
+-----------------------------------------------------------
+
+if u want creat a local repository we have to use following command git init
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git init
+
+Initialized empty Git repository in /home/sudheer/git_git/.git/
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ ls -a
+.  ..  .git
+
+so look at here it will creat a .git folder in it 
+
+-----------------------------------------------------------
+
+after that if u want add any file to the folder we have to use following command 
+
+touch sudheer.java
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ touch sudheer.java
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ ls
+
+sudheer.java
+
+and we have to add local repo details 
+
+git remote add origin https://github.com/username/repositoryname 
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git remote add origin https://github.com/gowrasudheer/pipe.git
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git remote -v
+
+origin	https://github.com/gowrasudheer/pipe.git (fetch)
+
+origin	https://github.com/gowrasudheer/pipe.git (push)
+
+-----------------------------------------------------------
+
+if u want check untracked files in our system git status
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ ls
+
+sudheer.java
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git status
+
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	sudheer.java
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+-----------------------------------------------------------
+
+if u want to add the file from wrokspace to staging area we have to use following command 
+
+git add ( git add can be used in two ways )
+
+git add file name ( if u want add singel file we can use following command )
+
+git add . (if u want to add all untracked file to staging area we can use following command )
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git add sudheer.java 
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   sudheer.java ( if it is appears in green colour it will be in staging area )
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ 
+
+--------------------------------------------------------------
+
+if u want commit changes from staging area to local repo we has to use commit command and we have commit message also
+
+git commit -m " commit message "
+
+git commit -m " commit the file "
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git commit -m " commit the file "
+
+[master (root-commit) 78883cc]  commit the file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 sudheer.java				( files has been commited to local repo )
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git status
+On branch master
+nothing to commit, working tree clean
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git log
+
+commit 78883cce213c44c0c004250347a302102e67ab0b (HEAD -> master)
+Author: gowra sudheer <gowrasudheer@gmail.com>				( if u want check commit message and details we have to use this 										command : git log ) 
+Date:   Tue Oct 29 13:51:29 2019 +0530
+																		
+     commit the file
+
+
+
+----------------------------------------------------------------
+if u want change commit message we have to use following command --amend
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git log
+
+commit 78883cce213c44c0c004250347a302102e67ab0b (HEAD -> master)
+Author: gowra sudheer <gowrasudheer@gmail.com>				( before amend  : git log ) 
+Date:   Tue Oct 29 13:51:29 2019 +0530
+																		
+     commit the file
+
+after amend :--
+----------------------------------------------------------------
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git commit --amend -m "the value should change "
+
+[master f9340b0] the value should change
+ Date: Tue Oct 29 13:51:29 2019 +0530
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 sudheer.java
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git log
+
+commit f9340b0beac534053a51da2720698dffcf3334c4 (HEAD -> master)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Tue Oct 29 13:51:29 2019 +0530
+
+    the value should change
+
+-----------------------------------------------------------------
+after that if u want push u r cahnges we have to use following command git push
+
+git push
+
+some times not going to push origin master we have to use -f command for that 
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git push -f origin master
+
+Username for 'https://github.com': gowrasudheer
+Password for 'https://gowrasudheer@github.com': 
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 227 bytes | 227.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/gowrasudheer/pipe.git
+ + bc3a3b9...f9340b0 master -> master (forced update)
+
+---------------------------------------------------------------------------------
+
+branching in git 
+
+what is branch why we need branch in git ? 
+
+using branching helps our organization the work flow more efficiently 
+
+if u r building a software for a comapny with 5 devlopoer its better to have 5 branches i mean each developer may have different branch because each developer works on their branch
+
+in simple terms git branches are called individual projects with in git repository 
+
+when u r introduce new feature are u r doing bug fix for a product its not recoommend to do on branch master .
+
+it become very easy to work with multiple people each working on their own code ifcode tested and everthing is fine branches can be merged to main branch .
+
+1 . to overcome the conflicts of code 
+-----------------------------------------------------------------------------
+to check branches avilable in u r system we have to use following command 
+
+$ git branch 
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch
+
+* master
+
+are list of all branches in your repository git branch --list
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch --list
+  feature
+* master
+-----------------------------------------------------------------------------
+
+if u want creat a branche  
+
+$git branch feature ( but it dose not switch to that branch )
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch feature
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch
+  feature
+* master
+
+----------------------------------------------------------------------------
+ if u want switch over to the created branch we have to use following command 
+
+$git checkout < branch name >
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git checkout feature 
+
+Switched to branch 'feature'
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch 
+
+* feature
+  master
+-----------------------------------------------------------------------------
+ if u want to delete particular branch we have to use following command 
+
+git branch -d < branch name > it is a safe option delete the branch if has unmerged changes 
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch -d feature 
+
+Deleted branch feature (was f9340b0).
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch 
+
+* master
+-------------------------------------------------------------------------------
+
+if u want delete the branch forcefully we have to use following command 
+
+git branch -D < and branch name >
+
+git push origin --delete <branch name >
+
+--------------------------------------------------------------------------------
+if u want rename of current branch 
+
+git branch -m < branch name >
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch sudheer
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch	( before changing nmae )
+
+* master
+  sudheer
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch -m sudheer feature
+					---------------------------------
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch  ( after chaging the name )
+
+  feature
+* master
+
+---------------------------------------------------------------------------
+list of all remote branches 
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch -a
+
+  feature
+* master
+  remotes/origin/feature
+  remotes/origin/master
+
+---------------------------------------------------------------------------
+git merge concept 
+-----------------
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch --list
+
+  feature
+* master
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git checkout feature 
+Switched to branch 'feature'
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git branch 
+* feature
+  master
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git checkout master 
+Switched to branch 'master'
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$ git merge feature 
+Already up to date.
+
+sudheer@sudheer-Lenovo-G50-70:~/git_git$
+
+-------------------------------------------------------------------------
+
+when two developers  working on same file and same line its going to be merge conflict 
+
+by using command git status
+
+How to identify merge conflicts
+
+As we have experienced from the proceeding example, Git will produce some descriptive output letting us know that a CONFLICT has occcured. We can gain further insight by running the git status command
+
+$ git status
+On branch master
+You have unmerged paths.
+(fix conflicts and run "git commit")
+(use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+(use "git add <file>..." to mark resolution)
+
+both modified:   merge.txt
+
+The output from git status indicates that there are unmerged paths due to a conflict. The merge.text file now appears in a modified state. Let's examine the file and see whats modified.
+
+$ cat merge.txt
+<<<<<<< HEAD
+this is some content to mess with
+content to append
+=======
+totally different content to merge later
+>>>>>>> new_branch_to_merge_later
+
+Here we have used the cat command to put out the contents of the merge.txt file. We can see some strange new additions
+
+    <<<<<<< HEAD
+    =======
+    >>>>>>> new_branch_to_merge_later
+
+Think of these new lines as "conflict dividers". The ======= line is the "center" of the conflict. All the content between the center and the <<<<<<< HEAD line is content that exists in the current branch master which the HEAD ref is pointing to. Alternatively all content between the center and >>>>>>> new_branch_to_merge_later is content that is present in our merging branch.
+
+---------------------------------------------------------------------------
+How to resolve merge conflicts using the command line
+
+The most direct way to resolve a merge conflict is to edit the conflicted file. Open the merge.txt file in your favorite editor. For our example lets simply remove all the conflict dividers. The modified merge.txt content should then look like:
+
+this is some content to mess with
+content to append
+totally different content to merge later
+
+Once the file has been edited use git add merge.txt to stage the new merged content. To finalize the merge create a new commit by executing:
+
+git commit -m "merged and resolved the conflict in merge.txt"
+
+Git will see that the conflict has been resolved and creates a new merge commit to finalize the merge.
+
+----------------------------------------------------------------------------
+
+git log --stat
+
+by using this command we can find out the commit details 
+
+sudheer@sudheer-Lenovo-G50-70:~$ git log --stat
+
+commit 338c0f03625f65734b643b29fa9727ec7c259daf (HEAD -> master)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Wed Oct 30 20:31:34 2019 +0530
+
+    cd
+
+ 2 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+----------------------------------------------------------------------------
+git cherry-pick
+
+git cherry-pick is powerfull tool is uded to undoing the changes.
+
+commit accidently made to the wrong branch .
+
+if u want to transfer the file to particular branch we have to use git cherry-pick 
+
+step1 :--
+---------
+
+git branch 
+
+sudheer@sudheer-Lenovo-G50-70:~$ git branch  
+
+feature
+* master
+
+step 2:--
+---------
+
+git log 
+
+sudheer@sudheer-Lenovo-G50-70:~$ git log
+
+commit 338c0f03625f65734b643b29fa9727ec7c259daf (HEAD -> feature)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Wed Oct 30 20:31:34 2019 +0530
+
+step 3:--
+---------
+
+copy sha 1 number 
+
+step4 :--
+----------
+
+switch over to the branch were u want to copy the data 
+
+sudheer@sudheer-Lenovo-G50-70:~$ git branch 
+  feature
+* master
+
+sudheer@sudheer-Lenovo-G50-70:~$ git checkout feature 
+
+Switched to branch 'feature'
+
+sudheer@sudheer-Lenovo-G50-70:~$ git branch 
+
+* feature
+  master
+
+sudheer@sudheer-Lenovo-G50-70:~$ 
+
+step5:--
+--------
+
+git cherry-pick (sha 1 )
+
+it will copy the file without deleteing in it
+
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git branch 
+  feature							( current branch )
+* master
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ touch java                ( adding file )
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git add .
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git commit -m "dd"	( commit the file )
+
+[master 276766e] dd
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 java
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git log			( copying sha1 number)
+commit 276766e40e4cd5c0b269ca46a58453325cfd2384 (HEAD -> master)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Wed Oct 30 20:58:21 2019 +0530
+
+    dd
+-----------------------------------------------------------------
+after cherry-pick 
+-----------------
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git checkout feature ( switch over to the branch )
+
+Switched to branch 'feature'
+Your branch is up to date with 'origin/feature'.
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ ls                    ( no java file )
+
+pom.xml  src
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git cherry-pick 276766e40e4cd5c  ( applying cherry command )
+
+[feature 9d96b0b] dd
+ Date: Wed Oct 30 20:58:21 2019 +0530
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 java
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ ls				( after using command we find out the result )
+
+java  pom.xml  src
+----
+
+------------------------------------------------------------------
+
+discard changes in working area :--
+-----------------------------------
+if u are working on one file if do some changes but u dont want those chnges we have to use the following command its only works on workspace 
+
+git checkout < file name > for particularly for one file 
+
+git checkout . < if u want delete all the changes > 
+-------------
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+
+On branch feature
+Your branch is ahead of 'origin/feature' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   java
+	modified:   one
+	modified:   the
+
+no changes added to commit (use "git add" and/or "git commit -a")
+------------
+look at here is 3 changes are there u dosent want those changes for particular file like java we have use git checkout javait will undo the change 
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git checkout java
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status 
+On branch feature
+Your branch is ahead of 'origin/feature' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   one
+	modified:   the								<< now look here our changes were dissappear >>
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+----------------------------------- if u want undo all the modified files at time we have to use following ------------------------------
+
+git checkout .
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status 
+
+On branch feature
+Your branch is ahead of 'origin/feature' by 3 commits.
+  (use "git push" to publish your local commits)					<<before checkout >>
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   one
+	modified:   the
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git checkout .
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+
+On branch feature
+Your branch is ahead of 'origin/feature' by 3 commits.				<< after checkout >>
+
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+if u r commited one file but u dosent want to commit that file u want get back that file we have to use following commands
+
+git reset is a powerful tool for undoing changes its primarly having 3 types
+
+1. git reset --soft
+
+2.git reset --mixed
+
+3.git reset --hard
+
+git reset --soft :-- 
+------------------------
+if u r commited one file but u dosent want to commit that file to local repo if u want get back that file staging area we are using following command 
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ touch 123
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+
+On branch feature
+Your branch and 'origin/feature' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	123
+
+nothing added to commit but untracked files present (use "git add" to track)
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git add .
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git commit -m " add this file "
+[feature 90c1721]  add this file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 123
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+On branch feature
+Your branch and 'origin/feature' have diverged,
+and have 2 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+nothing to commit, working tree clean
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git log
+commit 90c17210add722041205e6e510df060e9fb320a0 (HEAD -> feature)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 17:53:09 2019 +0530
+
+     add this file
+
+commit b6a52e7b46e5ff92177857899b4b336b7e2120d5
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 17:49:34 2019 +0530
+
+     files
+
+commit ccf55e0b77194316ecd1435d134ed7f526c1503c
+Author: gowrasudheer <gowrasudheer@gmail.com>
+Date:   Thu Aug 15 21:54:22 2019 +0530
+
+    pipe
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git reset --soft HEAD~1
+				-------------------------
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ 
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+On branch feature
+Your branch and 'origin/feature' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   123			( now file in staging area )
+---------------------------------------------------------------------------------------------------------------------------
+git reset --hard :-
+-------------------
+
+if u want delete commited file permentely 
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git log
+commit ef83803d05fea90439fadc5f3d6435a891a49295 (HEAD -> feature)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 18:02:16 2019 +0530
+
+     this file
+
+commit b6a52e7b46e5ff92177857899b4b336b7e2120d5
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 17:49:34 2019 +0530
+
+     files
+
+commit ccf55e0b77194316ecd1435d134ed7f526c1503c
+Author: gowrasudheer <gowrasudheer@gmail.com>
+Date:   Thu Aug 15 21:54:22 2019 +0530
+
+    pipe
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git reset --hard HEAD~1
+				      -----------------------
+HEAD is now at b6a52e7  files
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+On branch feature
+Your branch and 'origin/feature' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+nothing to commit, working tree clean
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git log
+commit b6a52e7b46e5ff92177857899b4b336b7e2120d5 (HEAD -> feature)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 17:49:34 2019 +0530
+
+     files
+
+commit ccf55e0b77194316ecd1435d134ed7f526c1503c
+Author: gowrasudheer <gowrasudheer@gmail.com>
+Date:   Thu Aug 15 21:54:22 2019 +0530
+
+    pipe
+sudheer@sudheer-Lenovo-G50-70:~/pipe$
+
+------------------------------------------------------------------------------------------------------------------------
+git reset --mixed sha1 : -----
+------------------------ 
+
+if u use this command our commit back to the work space 
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git add .
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git commit -m " asss "
+[feature 4185606]  asss
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 123
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ ls
+123  java  one  pom.xml  src  the
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git log
+commit 4185606e559e99170b59171f9fff18b95846035e (HEAD -> feature)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 18:09:10 2019 +0530
+
+     asss
+
+commit b6a52e7b46e5ff92177857899b4b336b7e2120d5
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 17:49:34 2019 +0530
+
+     files
+
+commit ccf55e0b77194316ecd1435d134ed7f526c1503c
+Author: gowrasudheer <gowrasudheer@gmail.com>
+Date:   Thu Aug 15 21:54:22 2019 +0530
+
+    pipe
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+On branch feature
+Your branch and 'origin/feature' have diverged,
+and have 2 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+nothing to commit, working tree clean
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git reset --mixed HEAD~1
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+On branch feature
+Your branch and 'origin/feature' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	123							<< look the file is untracked stage it means in workspace >>
+
+nothing added to commit but untracked files present (use "git add" to track)
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ 
+
+--------------------------------------------------------------------------------
+
+if u want delete all untracked files we have to use following command 
+
+$ git clean -df 
+---------------
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status
+On branch feature
+Your branch and 'origin/feature' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	123
+
+nothing added to commit but untracked files present (use "git add" to track)
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git clean -df 
+				      -------------
+Removing 123
+--------------------------------------------------------------------------------
+if want deleted file get back to workspace we have to use following command 
+
+git reflog is used to see the history
+-------------------------------------
+
+after deleting we are going to commit our changes to the git and created sh1 value by using that sh1 value we are going get back our file 
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git rm 123 
+rm '123'						( now we remove our file )
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git status 
+HEAD detached at 4185606
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	deleted:    123
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git add .
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git commit -m " aa"
+[detached HEAD 69b09a4]  aa
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 123
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ ls
+java  one  pom.xml  src  the
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git log				<< and commited again >>
+commit 69b09a4f187ff2d3b72c89dc89039472174441ce (HEAD)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 19:33:40 2019 +0530
+
+     aa
+
+commit 4185606e559e99170b59171f9fff18b95846035e
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 18:09:10 2019 +0530
+
+     asss
+
+commit b6a52e7b46e5ff92177857899b4b336b7e2120d5 (feature)
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Fri Nov 1 17:49:34 2019 +0530
+
+     files
+
+commit ccf55e0b77194316ecd1435d134ed7f526c1503c
+Author: gowrasudheer <gowrasudheer@gmail.com>
+Date:   Thu Aug 15 21:54:22 2019 +0530
+
+    pipe
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git checkout 4185606e
+Warning: you are leaving 1 commit behind, not connected to		<< after git checkout we are getting file back >>
+any of your branches:
+
+  69b09a4  aa
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> 69b09a4
+
+HEAD is now at 4185606  asss
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ ls
+
+123  java  one  pom.xml  src  the						<< look here our 123 file is back >>
+---												
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ 
+
+----------------------------------------------------------------------------------------------------------------------
+
+Staging Index / Stage
+
+- Skip staging
+	$ git commit -am "submit all pending changes"
+
+Note: If you want to skip the staging, you need to commit all pending changes.
+
+----------------------------------------------------------------------------------------------------------------------
+git stash and git pop-up commands :---
+--------------------------------------
+
+git stash command will store the changes while we have to switch over to the another branch ( tempoery store )
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git stash save " save the changes i will back "
+				      -----------------------------------------------
+Saved working directory and index state On feature:  save the changes i will back 
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git checkout master 
+Switched to branch 'master'
+Your branch is based on 'origin/master', but the upstream is gone.
+  (use "git branch --unset-upstream" to fixup)
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git branch 
+  feature
+* master
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git checkout feature 
+Switched to branch 'feature'
+Your branch and 'origin/feature' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+to find out the list of git stash we can use follwoing things
+----------------------------------------------------------------
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git stash list
+				    ------------------
+stash@{0}: On master: oooo
+stash@{1}: On feature: save the changes i will back
+
+ git stash pop ( it will apply to of the list )
+----------------------------------------------------------------
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git stash pop stash@{1}  << to switch over to the save changes >>
+
+On branch master
+Your branch is based on 'origin/master', but the upstream is gone.
+  (use "git branch --unset-upstream" to fixup)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   vanitha
+
+Dropped stash@{1} (ece03026bdc56dbf3c149027c54b27787788e356)
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git stash pop stash@{0}
+On branch master
+Your branch is based on 'origin/master', but the upstream is gone.
+  (use "git branch --unset-upstream" to fixup)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   1
+	new file:   vanitha
+
+Dropped stash@{0} (4d72a2d576cc93951d12d28e693c8bf9b978a327)
+
+---------------------------------------------------------------------
+if u want delete the satsh  list 
+
+>>> git stash drop ( stash id )
+
+>>> git stash clear ( if u want clear all the stash over can use following )
+
+------------------------------------------------------------------
+git  pull and git fetch git push
+
+git fetch :--
+------------
+
+git fetch really only downloads new data from a remote repository - but it doesn't integrate any of this new data into your working files. 
+
+Fetch is great for getting a fresh view on all the things that happened in a remote repository.
+
+fetch will never manipulate, destroy, or screw up anything. This means you can never fetch often enough.
+
+git pull :--
+------------
+
+This means that pull not only downloads new data; it also directly integrates it into your current working copy files. This has a couple of consequences:
+
+    Since "git pull" tries to merge remote changes with your local ones, a so-called "merge conflict" can occur. 
+
+    Like for many other actions, it's highly recommended to start a "git pull" only with a clean working copy. 
+
+    This means that you should not have any uncommitted local changes before you pull. 
+-----------------------------------------------------------------
+
+git merge :--
+------------- 
+
+Merging is a common practice for developers using version control systems. Whether branches are created for testing, bug fixes, or other reasons, merging commits changes to another location. To be more specific, merging takes the contents of a source branch and integrates them with a target branch. In this process, only the target branch is changed. The source branch history remains the same
+
+This will create a new “Merge commit” in the feature branch that holds the history of both branches
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git merge feature 
+Auto-merging java
+Merge made by the 'recursive' strategy.
+ 1       | 0
+ java    | 5 +++++
+ one     | 0
+ the     | 1 +
+ vanitha | 4 ++++
+ 5 files changed, 10 insertions(+)
+ create mode 100644 1
+ create mode 100644 one
+ create mode 100644 the
+ create mode 100644 vanitha
+
+sudheer@sudheer-Lenovo-G50-70:~/pipe$ git log
+commit 195f818c0349b2c714caf93744b286ba72b168a2 (HEAD -> master)
+Merge: 276766e c603255
+Author: gowra sudheer <gowrasudheer@gmail.com>
+Date:   Sat Nov 2 17:26:23 2019 +0530
+
+    Merge branch 'feature'
+=======================================================================================================
+ 
+git tag is used when code is getting release to qa are production team on that time we are creating tags
+
+git tags are two time 
+
+There are types of tags in Git: annotated and non-annotated. The names say it all: with one type we tag with an annotation on what the tag is about, while the other is tag without annotation. Both, however, are tags and mark a point of time in the life of the repository.
+
+Annotated Tags :--
+------------------
+
+Annotated tags are created with a message so there’s some context–other than the name of the tag–to go with the tag.
+
+git tag v1.2.0 -m "version 1.2.0, including new API"
+
+In addition to the message, annotated tags also include the name of the tagger, and the date the tag was created.
+
+If we run
+
+git show v1.2.0
+
+we will get something like this above the list of changes:
+
+tag v1.2.0
+Tagger: Sally Smith 
+Date:   Tue Jan 27 14:06:02 2015 -0600
+
+version 1.2.0 of the site
+
+Non-annotated Tags :--
+----------------------
+
+Non-annotated tags (also called “lightweight tags”) are created without a message, so the only hint as to what the tag is about is how you name it.
+
+git tag v1.2.1
+
+Non-annotated tags will look like a commit object, showing the changes made to the repository, but it won’t have metadata about the tag.
+
+When do I use which tag type?
+--------------------------------
+That short answer is: that’s entirely up to you.
+
+But if you want to include the name of the tagger and a date, you should use the annotated tag. I would use annotated tags for official releases, like MySoftware v1.2.1.
+
+git tag MySoftware-v1.2.1 -m "version 1.2.1, including new API"
+
+This tag shows the tagger name and date, in additional to any information about the release.
+
+For casual tagging, a lightweight or non-annotated tag should be enough.
+
+Both tag types include the entire history log of commits, so you will always have a record of what happened leading up to the tag (remember, a tag is just a snapshot of a point in time in the life of a repository).
+
+to list avilable tags we have to use following command :---
+-----------------------------------------------------------
+sudheer@sudheer-Lenovo-G50-70:~/mave$ git tag
+v0.1
+v1.0
+v1.2
+sudheer@sudheer-Lenovo-G50-70:~/mave$ git tag -l
+v0.1
+v1.0
+v1.2
+-----------------------------------------------------------
+
+to delete one tag localy we have to use follwoing command :-- 
+-----------------------------------------------------------
+
+git-tag-delete-local-and-remote.sh
+
+# delete local tag '12345'
+
+git tag -d 12345
+
+# delete remote tag '12345' (eg, GitHub version too)
+
+git push origin :refs/tags/12345
+
+
+# alternative approach
+
+git push --delete origin tagName
+
+sudheer@sudheer-Lenovo-G50-70:~/mave$ git push --delete origin v1.0
+
+Username for 'https://github.com': gowrasudheer
+Password for 'https://gowrasudheer@github.com': 
+To https://github.com/gowrasudheer/mave.git
+ - [deleted]         v1.0
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7
+
+GIT Tagging is a mechanism of referencing a point in GIT history. Unlike a git branch, once you create a git tag it cannot be changed and that is kind of its SUPERPOWER. In real life projects, it is used to make a reference point in GIT history for a release.
+
+This blog post will be a complete guide on how to create a tag, list/view tags, git push tag to remote, git delete tag from local and remote and much more.
+"Git create tag" to create tag
+
+git tag <tagname>
+----------------
+Above command can be used to create a tag by replacing <tagname> with the actual tag name. Here is an example of how someone might use this git command in real life to create tag.
+
+git tag v1.0
+--------------
+Create tag from a different Commit
+
+Normally above command will create a tag on the commit that HEAD is referencing to. Git also provides you the flexibility of creating a tag from other commits.
+
+You can simply list all the commits by "git log" command and choose the SHA hash. Pass that particular hash as an argument in the git command to create a tag from a particular commit.
+
+git tag v1.0 35a3a6c8e025da8fc6be5058fe6bc4024fd76642
+-----------------------------------------------------
+List/View all available Git Tags
+--------------------------------
+git tag
+
+This is the command which is used to list all the tags available in GIT history. The output of this command could be something like:
+
+v1.0
+v2.0
+v2.5
+v3.0
+
+-l option can be added to "git tag" command to further refine the result if you have a big list of tags. For example, if you only want to see tags for v2.0 and sub-releases.
+
+$ git tag -l "v2.*"
+-------------------
+v2.0
+v2.5
+
+Git push tag to remote
+
+
+Pushing a tag in git to a remote is similar to pushing a branch to a git remote. The only difference is that you need to mention the tag name 
+---------------------------------------------------------------------------------------------------------------------------------------------
+after the "git push" command as by default this command only pushed the branch.
+------------------------------------------------------------------------------
+$ git push origin v1.0 
+
+v1.0                                                                                                                                             
+Counting objects: 247, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (167/167), done.
+Writing objects: 100% (247/247), 333.76 KiB | 27.81 MiB/s, done.
+Total 247 (delta 75), reused 245 (delta 74)
+remote: Resolving deltas: 100% (75/75), completed with 2 local objects.
+To github.com:gulabbisht/drupixels.git
+ * [new tag]               v1.0 -> v1.0
+
+And if you want to push all tags from your local to the remote then add "--tags" to the git command and it will push all tags to the remote.
+--------------------------------------------------------------------------------------------------------------------------------------------
+git push origin --tags
+
+Git delete local tag
+
+Deleting a Git tag on local is as simple as deleting a git branch and a good option to clear the clutter.
+
+Best practice to delete a Git tag is to run "git tag" command to list them, identify the tag you want to delete and run the "git tag" command with -d and tag as arguments.
+
+$ git tag
+v1.0
+v2.0
+v2.5
+v3.0
+$ git tag -d v2.5
+Deleted tag 'v2.5' (was aea93f1727)
+$ git tag
+v1.0
+v2.0
+v3.0
+
+Git delete remote tag
+
+Once the tag is removed from local, the next step would be to remove the tag from the remote as well and this can be done using the command below.
+
+$ git push origin :refs/tags/v2.5
+To git@github.com:gulabbisht/drupixels.git
+ - [deleted]               v2.5
+
+Git checkout tag
+
+Sometimes you need to checkout a tag to see changes in the files. You can do so by simply running the "git checkout <tagname>" command as below.
+
+$ git checkout v1.0
+Checking out files: 100% (1146/1146), done.
+Note: checking out 'v1.0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at aea93f1727... Merge branch 'master' of github.com:gulabbisht/drupixels
+
+As you can see in the output of the command that we are in a 'detached HEAD' state. This means that any update in code and then commit will not update the tag, remember it was the SUPERPOWER. Instead, that commit will also behave like detached commit and cannot be referred to any branch or tag later unless you refer the exact commit hash.
+
+If you want to make any changes after checking out a tag then best practice would be to create a new branch out of it.
+
+
+
+			
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+node{
+    stage("git clone"){
+        git credentialsId: 'gitpassword', url: 'https://github.com/gowrasudheer/oreyd.git'
+    }
+    stage("mvn clean compile"){
+        sh 'mvn clean install'
+    }
+    stage("creating docker image"){
+        sh "docker build -t gowrasudheer/spring-boot-mango . "
+    }
+    stage("docker push"){
+        sh "docker login -u gowrasudheer -p 9490717473"
+        sh "docker push gowrasudheer/spring-boot-mango"
+    }
+}
